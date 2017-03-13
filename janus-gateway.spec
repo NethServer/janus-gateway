@@ -24,6 +24,7 @@ make
 
 %install
 DESTDIR=%buildroot make install
+DESTDIR=%buildroot make configs
 mkdir -p  %{buildroot}%{_unitdir}
 install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/janus-gateway.service
 
