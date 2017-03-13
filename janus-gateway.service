@@ -1,0 +1,20 @@
+[Unit]
+Description=Janus Gateway daemon.
+After=network.target
+Wants=systemd-modules-load.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/janus
+RuntimeDirectoryMode=0755
+ExecStart=/opt/janus/bin/janus
+
+Restart=on-failure
+RestartSec=4
+
+StandardOutput=null
+
+PrivateTmp=false
+
+[Install]
+WantedBy=multi-user.target
