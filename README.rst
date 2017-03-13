@@ -12,4 +12,4 @@ example configuration file are in /opt/janus/etc/janus
 Run
 ----
 
-Package install Systemd unit. Launc '''systemctl start janus-gateway'''
+Package install Systemd unit. Launc ```systemctl start janus-gateway```
