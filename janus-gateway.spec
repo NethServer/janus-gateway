@@ -8,7 +8,7 @@ Source0: https://github.com/meetecho/janus-gateway/archive/master.tar.gz
 Source1: janus-gateway.service
 BuildRequires: libmicrohttpd-devel, jansson-devel, libnice-devel, openssl-devel, libsrtp-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz
 BuildRequires: sofia-sip
-Requires: libmicrohttpd, jansson, libnice, openssl, libsrtp, glib, sofia-sip libwebsockets
+Requires: libmicrohttpd, jansson, libnice, openssl, glib, sofia-sip libwebsockets
 Requires: libsrtp15
 
 %description
