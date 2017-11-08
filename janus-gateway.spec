@@ -1,21 +1,22 @@
 Name:    janus-gateway
-Version: 0.2.3
-Release: 6%{?dist}
+Version: 0.2.4
+Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
-Source0: https://github.com/meetecho/janus-gateway/archive/master.tar.gz
+Source0: https://github.com/meetecho/janus-gateway/archive/v0.2.5.tar.gz
 Source1: janus-gateway.service
-BuildRequires: libmicrohttpd-devel, jansson-devel, libnice-devel, openssl-devel, libsrtp-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz
+BuildRequires: libmicrohttpd-devel, jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz
 BuildRequires: sofia-sip
-Requires: libmicrohttpd, jansson, libnice, openssl, glib, sofia-sip libwebsockets
+BuildRequires: libnice-devel >= 0.1.4
+Requires: libmicrohttpd, jansson, openssl, glib, sofia-sip libwebsockets
 Requires: libsrtp15
-
+Requires: libnice >= 0.1.4
 %description
 Janus is an open source, general purpose, WebRTC gateway designed and developed by Meetecho.
 
 %prep
-%autosetup -n janus-gateway-master
+%autosetup -n janus-gateway-0.2.5
 
 %build
 ./autogen.sh
@@ -43,3 +44,4 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+
