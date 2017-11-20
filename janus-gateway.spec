@@ -1,5 +1,5 @@
 Name:    janus-gateway
-Version: 0.2.4
+Version: 0.2.5
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
@@ -44,4 +44,7 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Mon Nov 20 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 0.2.5-1
+- janus-gateway ignores rtp_port_range option - Bug NethServer/dev#5374
+
 
