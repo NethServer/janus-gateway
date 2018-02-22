@@ -6,7 +6,7 @@ Wants=systemd-modules-load.service
 [Service]
 Type=simple
 ExecStart=/opt/janus/bin/janus -o
-Restart=on-abnormal
+Restart=always
 LimitNOFILE=65536
 RestartSec=4
 StandardOutput=null
