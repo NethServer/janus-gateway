@@ -6,8 +6,6 @@ Group: Network
 License: GPLv2
 Source0: https://github.com/meetecho/janus-gateway/archive/v0.2.5.tar.gz
 Source1: janus-gateway.service
-%{?systemd_requires}
-BuildRequires: systemd
 BuildRequires: libmicrohttpd-devel, jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz
 BuildRequires: sofia-sip
 BuildRequires: libnice-devel >= 0.1.4
@@ -30,9 +28,6 @@ DESTDIR=%buildroot make install
 DESTDIR=%buildroot make configs
 mkdir -p  %{buildroot}%{_unitdir}
 install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/janus-gateway.service
-
-%post
-%systemd_post janus-gateway.service
 
 %clean
 rm -rf %{buildroot}
