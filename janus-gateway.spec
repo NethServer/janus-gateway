@@ -1,5 +1,5 @@
 Name:    janus-gateway
-Version: 0.2.5
+Version: 0.2.5.1
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
@@ -44,6 +44,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Thu Mar 08 2018 Stefano Fancello <stefano.fancello@nethesis.it> - 0.2.5.1-1
+- janus-gateway: Janus doesn't try to restart if it fails - Bug NethServer/dev#5426
+
 * Mon Nov 20 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 0.2.5-1
 - janus-gateway ignores rtp_port_range option - Bug NethServer/dev#5374
 
