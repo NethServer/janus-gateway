@@ -1,14 +1,16 @@
+%define janus_release 0.4.1
+
 Name:    janus-gateway
-Version: 0.2.5.1
+Version: %{janus_release}
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
-Source0: https://github.com/meetecho/janus-gateway/archive/v0.2.5.tar.gz
+Source0: https://github.com/meetecho/janus-gateway/archive/v%{janus_release}.tar.gz
 Source1: janus-gateway.service
 BuildRequires: libmicrohttpd-devel, jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz
 BuildRequires: sofia-sip
-BuildRequires: libnice-devel >= 0.1.4
+BuildRequires: libnice-devel >= 0.1.4, lua-devel
 Requires: libmicrohttpd, jansson, openssl, glib, sofia-sip libwebsockets
 Requires: libsrtp15
 Requires: libnice >= 0.1.4
@@ -16,7 +18,7 @@ Requires: libnice >= 0.1.4
 Janus is an open source, general purpose, WebRTC gateway designed and developed by Meetecho.
 
 %prep
-%autosetup -n janus-gateway-0.2.5
+%autosetup -n janus-gateway-%{janus_release}
 
 %build
 ./autogen.sh
@@ -44,6 +46,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Thu May 31 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 0.4.1
+- Update to upstream release 0.4.1
+
 * Thu Mar 08 2018 Stefano Fancello <stefano.fancello@nethesis.it> - 0.2.5.1-1
 - janus-gateway: Janus doesn't try to restart if it fails - Bug NethServer/dev#5426
 
