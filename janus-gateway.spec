@@ -1,7 +1,7 @@
 %define janus_commit ca756d17cb1b58cae93c71fce20ef49cbe37c00a
 
 Name:    janus-gateway
-Version: 0.4.3
+Version: 0.4.2
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
