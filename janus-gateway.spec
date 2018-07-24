@@ -1,7 +1,7 @@
 %define janus_commit ca756d17cb1b58cae93c71fce20ef49cbe37c00a
 
 Name:    janus-gateway
-Version: 0.4.2
+Version: 0.4.3
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
@@ -46,6 +46,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Tue Jul 24 2018 Alessandro Polidori <alessandro.polidori@gmail.com> - 0.4.3-1
+- Update janus-gateway to 0.4.3 - NethServer/dev#5511
+
 * Thu May 31 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 0.4.1
 - Update to upstream release 0.4.1
 
