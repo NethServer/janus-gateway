@@ -1,12 +1,12 @@
 Name:    janus-gateway
-Version: 0.5.0
+Version: 0.6.0
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
 Source0: https://github.com/meetecho/janus-gateway/archive/v%{version}.tar.gz
 Source1: janus-gateway.service
-BuildRequires: libmicrohttpd-devel, jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz
+BuildRequires: libmicrohttpd-devel, jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz, libconfig-devel
 BuildRequires: sofia-sip
 BuildRequires: libnice-devel >= 0.1.4, lua-devel
 Requires: libmicrohttpd, jansson, openssl, glib, sofia-sip libwebsockets
@@ -44,6 +44,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Tue Jan 15 2019 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.6.0-1
+- Update janus-gateway to 0.6.0 - NethServer/dev#5555
+
 * Wed Nov 21 2018 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.5.0-1
 - Update janus-gateway to 0.5.0 - NethServer/dev#5648
 
