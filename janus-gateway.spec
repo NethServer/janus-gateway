@@ -1,5 +1,5 @@
 Name:    janus-gateway
-Version: 0.6.2
+Version: 0.6.3
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
@@ -44,6 +44,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Thu Mar 21 2019 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.6.3-1
+- Update janus-gateway to 0.6.3 - NethServer/dev#5735
+
 * Thu Mar 7 2019 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.6.2-1
 - Update janus-gateway to 0.6.2 - NethServer/dev#5728
 
