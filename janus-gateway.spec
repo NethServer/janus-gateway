@@ -1,5 +1,5 @@
-%define janus_release 0.7.4.0
-%define janus_commit 262e99785b1c648bd4272f109e281e444650e3db
+%define janus_release 0.7.6.0
+%define janus_commit a71354b880f64097bf8535dd3afe8e65cd38aa81
 
 Name:    janus-gateway
 Version: %{janus_release}
