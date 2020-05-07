@@ -1,25 +1,24 @@
-%define janus_release 0.7.6.1
-%define janus_commit a71354b880f64097bf8535dd3afe8e65cd38aa81
-
 Name:    janus-gateway
-Version: %{janus_release}
+Version: 0.9.4
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
-Source0: https://github.com/meetecho/janus-gateway/archive/%{janus_commit}.tar.gz
+Source0: https://github.com/meetecho/janus-gateway/archive/v%{version}.tar.gz
 Source1: janus-gateway.service
-BuildRequires: libmicrohttpd-devel, jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz, libconfig-devel
+BuildRequires: jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz, libconfig-devel
+BuildRequires: libmicrohttpd-devel >= 0.9.59
 BuildRequires: sofia-sip
-BuildRequires: libnice-devel >= 0.1.15, lua-devel
-Requires: libmicrohttpd, jansson, openssl, glib, sofia-sip libwebsockets
+BuildRequires: libnice-devel >= 0.1.16, lua-devel
+Requires: jansson, openssl, glib, sofia-sip libwebsockets
 Requires: libsrtp15
-Requires: libnice >= 0.1.15
+Requires: libnice >= 0.1.16
+Requires: libmicrohttpd >= 0.9.59
 %description
 Janus is an open source, general purpose, WebRTC gateway designed and developed by Meetecho.
 
 %prep
-%autosetup -n janus-gateway-%{janus_commit}
+%autosetup -n janus-gateway-%{version}
 
 %build
 ./autogen.sh
