@@ -1,5 +1,5 @@
 Name:    janus-gateway
-Version: 0.9.5
+Version: 0.10.1
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
