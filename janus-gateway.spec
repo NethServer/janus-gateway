@@ -1,10 +1,13 @@
+%define janus_release 0.10.1.1
+%define janus_commit 085ed393e8be15834e8b263a990494986518bd05
+
 Name:    janus-gateway
-Version: 0.10.1
+Version: %{janus_release}
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
-Source0: https://github.com/meetecho/janus-gateway/archive/v%{version}.tar.gz
+Source0: https://github.com/meetecho/janus-gateway/archive/%{janus_commit}.tar.gz
 Source1: janus-gateway.service
 BuildRequires: jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz, libconfig-devel
 BuildRequires: libmicrohttpd-devel >= 0.9.59
@@ -18,7 +21,7 @@ Requires: libmicrohttpd >= 0.9.59
 Janus is an open source, general purpose, WebRTC gateway designed and developed by Meetecho.
 
 %prep
-%autosetup -n janus-gateway-%{version}
+%autosetup -n janus-gateway-%{janus_commit}
 
 %build
 ./autogen.sh
@@ -46,6 +49,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Tue Jun 16 2020 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.10.1.1-1
+- Upgrade janus-gateway to commit 085ed39 - NethServer/dev#6195
+
 * Thu Mar 21 2019 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.6.3-1
 - Update janus-gateway to 0.6.3 - NethServer/dev#5735
 
