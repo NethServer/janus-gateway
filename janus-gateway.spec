@@ -1,5 +1,5 @@
-%define janus_release 0.10.1.1
-%define janus_commit 085ed393e8be15834e8b263a990494986518bd05
+%define janus_release 0.10.2.1
+%define janus_commit a46344dccb5b45e5644ba9645e83a39e927f6915
 
 Name:    janus-gateway
 Version: %{janus_release}
@@ -49,6 +49,9 @@ rm -rf %{buildroot}
 %{_unitdir}/janus-gateway.service
 
 %changelog
+* Mon Jun 22 2020 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.10.2.1-1
+- Upgrade janus-gateway to commit a46344d - NethServer/dev#6195
+
 * Tue Jun 16 2020 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.10.1.1-1
 - Upgrade janus-gateway to commit 085ed39 - NethServer/dev#6195
 
