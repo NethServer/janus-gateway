@@ -15,10 +15,10 @@ BuildRequires: libmicrohttpd-devel >= 0.9.59
 BuildRequires: sofia-sip-devel
 BuildRequires: libnice-devel >= 0.1.16, lua-devel
 BuildRequires: systemd
+
 Requires(post): systemd
 Requires(preun): systemd
 Requires(postun): systemd
-
 Requires: jansson, openssl, glib, sofia-sip, libwebsockets
 Requires: libsrtp15
 Requires: libnice >= 0.1.16
@@ -30,9 +30,10 @@ Janus is an open source, general purpose, WebRTC gateway designed and developed 
 %autosetup -n janus-gateway-%{janus_commit}
 
 %build
+DBG_FLAGS="-O0 -fno-omit-frame-pointer -g3 -ggdb3 -fsanitize=address,undefined -frecord-gcc-switches"
 ./autogen.sh
-./configure --prefix=/opt/janus
-make
+./configure --prefix=/opt/janus CFLAGS="$DBG_FLAGS" LDFLAGS="$DBG_FLAGS"
+make %{?_smp_mflags}
 
 %install
 DESTDIR=%buildroot make install
