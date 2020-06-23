@@ -1,15 +1,16 @@
 [Unit]
 Description=Janus WebRTC gateway
 After=network.target
-Wants=systemd-modules-load.service
 
 [Service]
+Environment=JANUS_OPTS=-o -N -d 4
+Environment=SOFIA_DEBUG=0
+EnvironmentFile=-/opt/janus/etc/janus.env
 Type=simple
-ExecStart=/opt/janus/bin/janus -o
+ExecStart=/bin/bash -c 'logfile=/var/log/janus-dbg-$(/bin/date +%%s).log ; echo OUT/ERR sent to $$logfile ; exec /opt/janus/bin/janus $${JANUS_OPTS} &>$$logfile'
 Restart=always
 LimitNOFILE=65536
 RestartSec=4
-StandardOutput=null
 
 [Install]
 WantedBy=multi-user.target
