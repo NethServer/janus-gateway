@@ -9,11 +9,17 @@ Group: Network
 License: GPLv2
 Source0: https://github.com/meetecho/janus-gateway/archive/%{janus_commit}.tar.gz
 Source1: janus-gateway.service
-BuildRequires: jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, pkgconfig, gengetopt, libtool, autoconf, automake, libwebsockets-devel, doxygen, graphviz, libconfig-devel
+BuildRequires: gengetopt, libtool, autoconf, automake
+BuildRequires: jansson-devel, openssl-devel, libsrtp15-devel, glib-devel, opus-devel, libogg-devel, libcurl-devel, libwebsockets-devel, libconfig-devel
 BuildRequires: libmicrohttpd-devel >= 0.9.59
-BuildRequires: sofia-sip
+BuildRequires: sofia-sip-devel
 BuildRequires: libnice-devel >= 0.1.16, lua-devel
-Requires: jansson, openssl, glib, sofia-sip libwebsockets
+BuildRequires: systemd
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
+
+Requires: jansson, openssl, glib, sofia-sip, libwebsockets
 Requires: libsrtp15
 Requires: libnice >= 0.1.16
 Requires: libmicrohttpd >= 0.9.59
@@ -47,6 +53,15 @@ rm -rf %{buildroot}
 /opt/janus/include
 /opt/janus/lib
 %{_unitdir}/janus-gateway.service
+
+%post
+%systemd_post ${name}.service
+
+%preun
+%systemd_preun ${name}.service
+
+%postun
+%systemd_postun
 
 %changelog
 * Mon Jun 26 2020 Davide Principi <davide.principi@nethesis.it> - 0.10.2.2-1
