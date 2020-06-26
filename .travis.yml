@@ -16,9 +16,9 @@ env:
 script: >
     docker run --cap-add SYS_PTRACE -ti --name makerpms ${EVARS}
     --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org"
-    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} makerpms-travis janus-gateway.spec
-    && docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild 
-    && find rpmbuild
+    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} scl enable devtoolset-9 -- makerpms-travis janus-gateway.spec
+    && docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild
+    && find rpmbuild -ls
 
 
 
