@@ -3,7 +3,7 @@
 
 Name:    janus-gateway
 Version: %{janus_release}
-Release: 1-dbg%{?dist}
+Release: 1.dbg%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
