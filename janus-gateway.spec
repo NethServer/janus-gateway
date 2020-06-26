@@ -65,6 +65,6 @@ rm -rf %{buildroot}
 %systemd_postun
 
 %changelog
-* Mon Jun 26 2020 Davide Principi <davide.principi@nethesis.it> - 0.10.2.2-1
+* Fri Jun 26 2020 Davide Principi <davide.principi@nethesis.it> - 0.10.2.2-1
 - Upgrade janus-gateway to commit 922b3926e3
 
