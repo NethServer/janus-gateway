@@ -13,9 +13,9 @@ env:
     -e STAGES_PACK"
 
 script: >
-    docker run -ti --name makerpms ${EVARS}
+    docker run --cap-add SYS_PTRACE -ti --name makerpms ${EVARS}
     --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org"
-    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} makerpms-travis -s janus-gateway.spec
+    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} makerpms-travis janus-gateway.spec
     && docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild 
     && find rpmbuild
 
