@@ -1,9 +1,8 @@
-%define janus_release 0.10.2.2
 %define janus_commit 922b3926e3b9ed2e50b6e6f36b6f018025dadf8b
 
 Name:    janus-gateway
-Version: %{janus_release}
-Release: 1.dbg%{?dist}
+Version: 0.10.2
+Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 Group: Network
 License: GPLv2
@@ -30,9 +29,8 @@ Janus is an open source, general purpose, WebRTC gateway designed and developed 
 %autosetup -n janus-gateway-%{janus_commit}
 
 %build
-DBG_FLAGS="-O0 -fno-omit-frame-pointer -g3 -ggdb3 -fsanitize=address,undefined -frecord-gcc-switches"
 ./autogen.sh
-./configure --prefix=/opt/janus CFLAGS="$DBG_FLAGS" LDFLAGS="$DBG_FLAGS"
+./configure --prefix=/opt/janus %{?dbgflags:CFLAGS="%{dbgflags}" LDFLAGS="%{dbgflags}"}
 make %{?_smp_mflags}
 
 %install

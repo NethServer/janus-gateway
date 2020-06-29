@@ -13,12 +13,16 @@ env:
     -e TRAVIS_PULL_REQUEST -e TRAVIS_REPO_SLUG -e TRAVIS_TAG -e NSVER -e VERSIONS_PACK
     -e STAGES_PACK -e YUM_ARGS"
 
-script: >
-    docker run --cap-add SYS_PTRACE -ti --name makerpms ${EVARS}
+script:
+  - >
+    docker run -ti
+    --cap-add SYS_PTRACE
+    --name makerpms ${EVARS}
     --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org"
-    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} scl enable devtoolset-9 -- makerpms-travis janus-gateway.spec
-    && docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild
-    && find rpmbuild -ls
+    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE}
+    scl enable devtoolset-9 -- makerpms-travis janus-gateway.spec ${TRAVIS_PULL_REQUEST_SHA:+-D 'dbgflags -O0 -fno-omit-frame-pointer -g3 -ggdb3 -fsanitize=address,undefined'}
+  - docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild
+  - find rpmbuild -ls
 
 
 
