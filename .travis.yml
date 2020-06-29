@@ -13,6 +13,8 @@ env:
     -e TRAVIS_PULL_REQUEST -e TRAVIS_REPO_SLUG -e TRAVIS_TAG -e NSVER -e VERSIONS_PACK
     -e STAGES_PACK -e YUM_ARGS"
 
+before_script: git fetch origin --tags
+
 script:
   - >
     docker run -ti
@@ -22,7 +24,11 @@ script:
     --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE}
     scl enable devtoolset-9 -- makerpms-travis janus-gateway.spec ${TRAVIS_PULL_REQUEST_SHA:+-D 'dbgflags -O0 -fno-omit-frame-pointer -g3 -ggdb3 -fsanitize=address,undefined'}
   - docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild
-  - find rpmbuild -ls
-
-
-
+  - docker commit makerpms nethserver/build
+  - >
+    docker run -ti ${EVARS}
+    -e SECRET
+    -e SECRET_URL
+    -e AUTOBUILD_SECRET
+    -e AUTOBUILD_SECRET_URL
+    nethserver/build uploadrpms-travis
