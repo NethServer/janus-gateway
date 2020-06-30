@@ -65,7 +65,7 @@ rm -rf %{buildroot}
 # configuration package takes care of restarting the service
 # when needed. We could revert this decision in the future
 # by using the following macro instead:
-# %systemd_postun_with_restart ${name}.service
+# %%systemd_postun_with_restart ${name}.service
 %systemd_postun
 
 %changelog
