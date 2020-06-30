@@ -60,14 +60,14 @@ rm -rf %{buildroot}
 %systemd_preun ${name}.service
 
 %postun
-%if %{?dbgflags:1}0 > 0
-# Instrumented builds do not restart the service during upgrades
+# As this RPM is released for NethVoice, the nethserver-janus
+# configuration package takes care of restarting the service
+# when needed. We could revert this decision in the future
+# by using the following macro instead:
+# %systemd_postun_with_restart ${name}.service
 %systemd_postun
-%else
-%systemd_postun_with_restart ${name}.service
-%endif
 
 %changelog
 * Fri Jun 26 2020 Davide Principi <davide.principi@nethesis.it> - 0.10.2-1
-- Upgrade janus-gateway to commit 922b3926e3
+- Upgrade janus-gateway to commit 922b3926e3 of version 0.10.2
 
