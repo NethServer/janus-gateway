@@ -25,20 +25,23 @@ env:
 
 before_script: git fetch origin --tags
 
-script:
-  - >
-    docker run -ti
-    --cap-add SYS_PTRACE
-    --name makerpms ${EVARS}
-    --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org"
-    --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE}
-    scl enable devtoolset-9 -- makerpms-travis janus-gateway.spec ${TRAVIS_PULL_REQUEST_SHA:+-D 'dbgflags -O0 -fno-omit-frame-pointer -g3 -ggdb3 -fsanitize=address,undefined'}
-  - docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild
-  - docker commit makerpms nethserver/build
-  - >
-    docker run -ti ${EVARS}
-    -e SECRET
-    -e SECRET_URL
-    -e AUTOBUILD_SECRET
-    -e AUTOBUILD_SECRET_URL
-    nethserver/build uploadrpms-travis
+#
+# Note: ${TRAVIS_PULL_REQUEST_SHA:+... compile with libasan and libubsan when a PR is built
+#
+script: |
+        set -e -x
+        docker run -ti \
+          --cap-add SYS_PTRACE \
+          --name makerpms ${EVARS} \
+          --hostname "b${TRAVIS_BUILD_NUMBER}.nethserver.org" \
+          --volume $PWD:/srv/makerpms/src:ro ${DOCKER_IMAGE} \
+          scl enable devtoolset-9 -- makerpms-travis janus-gateway.spec ${TRAVIS_PULL_REQUEST_SHA:+-D 'dbgflags -O0 -fno-omit-frame-pointer -g3 -ggdb3 -fsanitize=address,undefined'}
+        docker cp makerpms:/srv/makerpms/rpmbuild rpmbuild
+        docker commit makerpms nethserver/build
+        docker run -ti ${EVARS} \
+          -e SECRET \
+          -e SECRET_URL \
+          -e AUTOBUILD_SECRET \
+          -e AUTOBUILD_SECRET_URL \
+          nethserver/build uploadrpms-travis
+        set +x
