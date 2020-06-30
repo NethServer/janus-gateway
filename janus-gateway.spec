@@ -4,8 +4,8 @@ Name:    janus-gateway
 Version: 0.10.2
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
-Group: Network
-License: GPLv2
+License: GPLv3
+URL: https://github.com/NethServer/janus-gateway
 Source0: https://github.com/meetecho/janus-gateway/archive/%{janus_commit}.tar.gz
 Source1: janus-gateway.service
 BuildRequires: gengetopt, libtool, autoconf, automake
@@ -52,6 +52,7 @@ rm -rf %{buildroot}
 /opt/janus/include
 /opt/janus/lib
 %{_unitdir}/janus-gateway.service
+%license LICENSE
 
 %post
 %systemd_post ${name}.service
