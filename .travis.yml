@@ -6,7 +6,6 @@ env:
   - DEST_ID=core
   - NSVER=7
   - DOCKER_IMAGE=nethserver/makerpms:devtoolset${NSVER}
-  - YUM_ARGS=--enablerepo=nethserver-testing
   - >
     EVARS="
     -e DEST_ID
@@ -23,13 +22,13 @@ env:
     -e YUM_ARGS
     "
 
-before_script: git fetch origin --tags
-
 #
-# Note: ${TRAVIS_PULL_REQUEST_SHA:+... compile with libasan and libubsan when a PR is built
+# Note: ${TRAVIS_PULL_REQUEST_SHA:+... enable nethserver-testing repo
+#       and compile with libasan and libubsan when a PR is built.
 #
 script: |
         set -e -x
+        export YUM_ARGS="${TRAVIS_PULL_REQUEST_SHA:+--enablerepo=nethserver-testing}"
         docker run -ti \
           --cap-add SYS_PTRACE \
           --name makerpms ${EVARS} \
