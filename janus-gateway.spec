@@ -44,6 +44,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
+%license COPYING
 %config(noreplace) /opt/janus/etc/janus/*
 %doc /opt/janus/share/doc/*
 %doc /opt/janus/share/man/*
@@ -52,7 +53,6 @@ rm -rf %{buildroot}
 /opt/janus/include
 /opt/janus/lib
 %{_unitdir}/janus-gateway.service
-%license LICENSE
 
 %post
 %systemd_post ${name}.service
