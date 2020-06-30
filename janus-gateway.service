@@ -3,8 +3,8 @@ Description=Janus WebRTC gateway
 After=network.target
 
 [Service]
-Environment=JANUS_OPTS=-o -N -d 4
-Environment=SOFIA_DEBUG=0
+Environment="JANUS_OPTS=-o -N -d 4"
+Environment="SOFIA_DEBUG=0"
 EnvironmentFile=-/opt/janus/etc/janus.env
 Type=simple
 ExecStart=/bin/bash -c 'logfile=/var/log/janus-dbg-$(/bin/date +%%s).log ; echo OUT/ERR sent to $$logfile ; exec /opt/janus/bin/janus $${JANUS_OPTS} &>$$logfile'
