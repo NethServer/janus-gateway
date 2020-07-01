@@ -43,12 +43,9 @@ Once the RPM with additional libraries is installed:
    or run ``systemctl edit janus-gateway.service``. ::
 
     [Service]
+    Environment="SOFIA_DEBUG=9"
     ExecStart=
-    ExecStart=/bin/bash -c '\
-    export SOFIA_DEBUG=9; \
-    logfile=/var/log/janus-dbg-$(/bin/date +%%s).log ; \
-    echo OUT/ERR sent to $$logfile ; \
-    exec /opt/janus/bin/janus -o -d 7 -L /dev/null &>$$logfile'
+    ExecStart=/bin/bash -c 'exec /opt/janus/bin/janus -o -d 7 -L /dev/null &>/var/log/janus-trc.log.$$$$'
 
 2. Check the changes are in place: ::
 
@@ -58,9 +55,14 @@ Once the RPM with additional libraries is installed:
 
     systemctl restart janus-gateway
 
-4. Check the status. The current log file should be visible in the unit journal excerpt: ::
+4. Check the status. The current log file is ``/var/log/janus-trc.log.PIDNUM``, where ``PIDNUM`` is 
+   the server main process PID: ::
 
     systemctl status janus-gateway
 
-Remember to remove ``/etc/systemd/system/janus-gateway.service.d/override.conf`` and restart the service when
-the trace is no longer needed.
+To clean up the above setup: ::
+
+    rm -f /etc/systemd/system/janus-gateway.service.d/override.conf
+    systemctl daemon-reload
+
+Then restart the service.
