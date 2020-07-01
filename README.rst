@@ -48,7 +48,7 @@ Once the RPM with additional libraries is installed:
     export SOFIA_DEBUG=9; \
     logfile=/var/log/janus-dbg-$(/bin/date +%%s).log ; \
     echo OUT/ERR sent to $$logfile ; \
-    exec /opt/janus/bin/janus -o -L /dev/null &>$$logfile'
+    exec /opt/janus/bin/janus -o -d 7 -L /dev/null &>$$logfile'
 
 2. Check the changes are in place: ::
 
