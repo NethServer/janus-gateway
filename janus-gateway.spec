@@ -61,7 +61,7 @@ rm -rf %{buildroot}
 %systemd_preun ${name}.service
 
 %postun
-# As this RPM is released for NethVoice, the nethserver-janus
+# As this RPM is released for NethServer, the nethserver-janus
 # configuration package takes care of restarting the service
 # when needed. We could revert this decision in the future
 # by using the following macro instead:
