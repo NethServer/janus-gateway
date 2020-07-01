@@ -38,14 +38,17 @@ See also the ``.travis.yml`` in this repository for more information.
 
 Once the RPM with additional libraries is installed:
 
-1. Add a local systemd unit override fragment, by copying the following 
-   contents to ``/etc/systemd/system/janus-gateway.service.d/override.conf``
-   or run ``systemctl edit janus-gateway.service``. ::
+1. Add a local systemd unit override fragment,
+   by running ``systemctl edit janus-gateway.service``. ::
 
     [Service]
     Environment="SOFIA_DEBUG=9"
     ExecStart=
     ExecStart=/bin/bash -c 'exec /opt/janus/bin/janus -o -d 7 -L /dev/null &>/var/log/janus-trc.log.$$$$'
+
+   As alternative copy the above fragment to
+   ``/etc/systemd/system/janus-gateway.service.d/override.conf``
+   and run ``systemctl daemon-reload``.
 
 2. Check the changes are in place: ::
 
