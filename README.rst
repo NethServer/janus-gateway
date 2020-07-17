@@ -6,12 +6,12 @@ Janus Gateway RPM https://github.com/meetecho/janus-gateway
 
 
 Configuration
---------------
+=============
 
 Example configuration files are in ``/opt/janus/etc/janus``
 
 Install and start the service
------------------------------
+=============================
 
 The RPM installs a systemd unit. To enable it and start the service run :: 
 
@@ -23,7 +23,7 @@ The service *is not* restarted automatically after RPM upgrades. Remember to run
 
 
 Detailed trace
---------------
+==============
 
 It is possible to build the RPM with additional libraries that send to standard output a detailed trace
 and detect memory leaks and faults. This is useful for upstream developers to debug a server crash.
@@ -69,3 +69,18 @@ To clean up the above setup: ::
     systemctl daemon-reload
 
 Then restart the service.
+
+Building a release RPM
+======================
+
+1. Ensure the release commit hash is set in the .spec file
+2. Fix the .spec file Version and Release tag
+3. Write the %changelog entry in the .spec file
+4. Commit the above changes
+5. Create a git tag that starts with a digit. Do not use any "-" (minus) sign! E.g.: 0.12.1r2
+6. Push the tag and the commit to start the automated build on Travis CI
+
+Builds started from a tagged commit are published to "updates"!
+
+More information: https://docs.nethserver.org/projects/nethserver-devel/en/v7/building_rpms.html
+
