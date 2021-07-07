@@ -1,7 +1,7 @@
-%define janus_commit 7732127f71521d1f1b305fdcf1073b3602f15b6e
+%define janus_commit bb9f893b3f6fc15c55649b3dc775b0463d48b8d7
 
 Name:    janus-gateway
-Version: 0.10.10
+Version: 0.11.3
 Release: 1%{?dist}
 Summary: General purpose WebRTC gateway
 License: GPLv3
