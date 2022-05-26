@@ -2,7 +2,7 @@
 
 Name:    janus-gateway
 Version: 0.10.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: General purpose WebRTC gateway
 License: GPLv3
 URL: https://github.com/NethServer/janus-gateway
@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 %systemd_postun
 
 %changelog
+* Thu May 26 2022 Stefano Fancello <stefano.fancello@nethesis.it> - 0.10.10-2
+- Update from 1.5 to 2.3 - nethesis/dev#6124
+
 * Thu Feb 18 2021 Alessandro Polidori <alessandro.polidori@nethesis.it> - 0.10.10-1
 - Janus-Gateway: upgrade to 0.10.10 (7732127) - NethServer/dev#6416
 
