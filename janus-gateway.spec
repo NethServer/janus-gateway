@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 %systemd_postun
 
 %changelog
+* Fri Sep 30 2022 Stefano Fancello <stefano.fancello@nethesis.it> - 0.12.3-1
+- Update Janus Gateway to 0.12.3 - nethesis/dev#6178
+
 * Thu May 26 2022 Stefano Fancello <stefano.fancello@nethesis.it> - 0.10.10-2
 - Update from 1.5 to 2.3 - nethesis/dev#6124
 
